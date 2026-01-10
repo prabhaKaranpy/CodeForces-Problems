@@ -31,7 +31,10 @@ signed main(void){
             arr[u].pb(v); 
             arr[v].pb(u); 
         } 
-        // vector<int> parent(n+1, -1); 
+        vector<int> parent(n+1, -1); 
+
+
+
         vector<int> visited(n+1); 
         vector<int> levels(n+1); 
         f(1, arr, visited, levels, 1) +1; 
