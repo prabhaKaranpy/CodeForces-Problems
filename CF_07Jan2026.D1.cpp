@@ -41,6 +41,12 @@ signed main(void){
         int maxi = 0; 
         for(auto &it : levels) maxi = max(maxi, it); 
         int ans = maxi+1; 
+        for(int i = 2; i <= n;i++){
+            if((int)(arr[i].size()) -1 == ans){
+                ans ++; 
+                break; 
+            }
+        }
         cout<<ans<<endl; 
     }
 }
