@@ -10,6 +10,10 @@ signed main(void){
     prabha;
     int T; cin>>T; 
     while(T--){
-        
+        int n; cin>>n; 
+        vector<int> arr(n); for(int &it : arr) cin>>it; 
+        int maxi = -1e8; 
+        for(int &it : arr) maxi=  max(maxi, it); 
+        cout<<(maxi * n)<<endl; 
     }
 }
