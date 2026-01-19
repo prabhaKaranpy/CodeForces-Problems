@@ -31,18 +31,26 @@ signed main(void){
             arr[u].pb(v); 
             arr[v].pb(u); 
         } 
-        vector<int> parent(n+1, -1); 
+        // vector<int> parent(n+1, -1); 
 
 
 
         vector<int> visited(n+1); 
         vector<int> levels(n+1); 
-        f(1, arr, visited, levels, 1) +1; 
-        int maxi = 0; 
+        f(1, arr, visited, levels, 1); 
+        int maxi = 1; 
+        // for(auto &it : levels) cout<<it<<" "; 
+        // cout<<endl; 
         for(auto &it : levels) maxi = max(maxi, it); 
-        int ans = maxi+1; 
-        for(int i = 2; i <= n;i++){
-            if((int)(arr[i].size()) -1 == ans){
+        int ans = maxi; 
+        for(int i = 1; i <= n;i++){
+            if(i == 1){
+                if(((int)(arr[i].size())) == ans){
+                    ans ++; 
+                    break; 
+                }
+            }
+            if(((int)(arr[i].size()) -1) == ans){
                 ans ++; 
                 break; 
             }
