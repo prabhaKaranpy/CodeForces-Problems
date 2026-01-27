@@ -15,51 +15,72 @@ signed main(void){
         set<int> stt(a.begin(), a.end()); 
         vector<int> arr; for(auto &it : stt) arr.pb(it); 
         int size = arr.size(); 
+        vector<int> dist(n+1); 
+        queue<pair<int, int>> qu; 
+        for(auto &it : arr){
+            qu.push({it, 1}); 
+            dist[it] = 1; 
+        }
+        while(!qu.empty()){
+            auto [product, numberOfElements] = qu.front(); qu.pop(); 
+            for(auto &it : arr){
+                if((product * it) > n) break; 
+                if((!dist[product * it])){
+                    qu.push({(product * it), numberOfElements+1}); 
+                    dist[product*it] = numberOfElements+1; 
+                }
+            }
+        } 
+        for(int i = 1; i <= n; i++){
+            if(dist[i]) cout<<dist[i]<<" "; 
+            else cout<<-1<<" "; 
+        } 
+        cout<<endl; 
         // cout<<"Arr : "<<" "; 
         // for(auto &it : arr) cout<<it<<" "; 
         // cout<<endl; 
-        for(int ii = 1; ii <= n; ii++){
-            int i = ii; 
-            int count = 0; 
-            int found = 0; 
-            int index = -1; 
-            auto lb = lower_bound(arr.begin(), arr.end(), i); 
-            if(lb == arr.end()) index = size-1; 
-            else index = lb - arr.begin(); 
-            int start = index; 
-            while(start >= 0){
-                if(arr[start] == 1){
-                    if(i == 1){
-                        if(count == 0) count = 1; 
-                        break; 
-                    }
-                    count = 0; break; 
-                }
-                if(!(i % arr[start])){
-                    while(!(i % arr[start])){
-                        count ++; 
-                        i /= arr[start]; 
-                        if(i == 1){
-                            found = 1; 
-                            break; 
-                        }
-                    } 
-                    if(found) break; 
-                    auto lb = lower_bound(arr.begin(), arr.end(), i); 
-                    if(lb == arr.end()) start = start-1; 
-                    else start = lb - arr.begin(); 
-                }
-                else{
-                    start --; 
-                }
-            } 
-            if(i > 1 && start < 0){
-                cout<<-1<<" "; continue; 
-            }
-            if(count == 0) cout<<-1<<" "; 
-            else cout<<count<<" "; 
-        }
-        cout<<endl; 
+        // for(int ii = 1; ii <= n; ii++){
+        //     int i = ii; 
+        //     int count = 0; 
+        //     int found = 0; 
+        //     int index = -1; 
+        //     auto lb = lower_bound(arr.begin(), arr.end(), i); 
+        //     if(lb == arr.end()) index = size-1; 
+        //     else index = lb - arr.begin(); 
+        //     int start = index; 
+        //     while(start >= 0){
+        //         if(arr[start] == 1){
+        //             if(i == 1){
+        //                 if(count == 0) count = 1; 
+        //                 break; 
+        //             }
+        //             count = 0; break; 
+        //         }
+        //         if(!(i % arr[start])){
+        //             while(!(i % arr[start])){
+        //                 count ++; 
+        //                 i /= arr[start]; 
+        //                 if(i == 1){
+        //                     found = 1; 
+        //                     break; 
+        //                 }
+        //             } 
+        //             if(found) break; 
+        //             auto lb = lower_bound(arr.begin(), arr.end(), i); 
+        //             if(lb == arr.end()) start = start-1; 
+        //             else start = lb - arr.begin(); 
+        //         }
+        //         else{
+        //             start --; 
+        //         }
+        //     } 
+        //     if(i > 1 && start < 0){
+        //         cout<<-1<<" "; continue; 
+        //     }
+        //     if(count == 0) cout<<-1<<" "; 
+        //     else cout<<count<<" "; 
+        // }
+        // cout<<endl; 
     }
 }
 
