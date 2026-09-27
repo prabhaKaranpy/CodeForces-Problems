@@ -14,12 +14,12 @@ signed main(void){
         vector<int> arr(n); for(int &it : arr) cin>>it; 
         int maxi = 1; 
         for(int i = 0; i < n; i++){
-            arr[i] -= i; 
+            arr[i] -= i;    // I'M HERE LOOKING FOR "True Elevation"... (10 + 0) , (10 + -1), (10 + -2),... 
         } 
         sort(arr.begin(), arr.end()); 
         map<int, int> dp; 
         for(auto &it : arr){
-            dp[it] = dp[it-1] +1; 
+            dp[it] = dp[it-1] +1; // finding LONGEST AP with d = -1... (True Elevation)    
         } 
         for(auto &it : dp){
             maxi = max(maxi, it.second); 
